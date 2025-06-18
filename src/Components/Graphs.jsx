@@ -29,17 +29,35 @@ import AverageSlides from "./AverageSlides";
 const Graphs = ({ filtered_data, folders }) => {
   return (
     <div className="graphs_container">
-      <SlideCount folders={folders} filtered_data={filtered_data} />
-      <PPTDistribution filtered_data={filtered_data} folders={folders} />
-      <TopTags filtered_data={filtered_data} />
-      <div className="row">
-        <SlidesPerFolder filtered_data={filtered_data} folders={folders} />
-        <AverageSlides filtered_data={filtered_data} folders={folders} />
-      </div>
-      <SlidesVsTags filtered_data={filtered_data} folders={folders} />
-      <FolderSummary filtered_data={filtered_data} folders={folders} />
+      {filtered_data.length === 0 ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+            fontSize: "36px",
+            color: "red",
+          }}
+        >
+          No Data to Show
+        </div>
+      ) : (
+        <>
+          <SlideCount folders={folders} filtered_data={filtered_data} />
+          <PPTDistribution filtered_data={filtered_data} folders={folders} />
+          <TopTags filtered_data={filtered_data} />
+          <div className="row">
+            <SlidesPerFolder filtered_data={filtered_data} folders={folders} />
+            <AverageSlides filtered_data={filtered_data} folders={folders} />
+          </div>
+          <SlidesVsTags filtered_data={filtered_data} folders={folders} />
+          <FolderSummary filtered_data={filtered_data} folders={folders} />
+        </>
+      )}
     </div>
   );
 };
+
 
 export default Graphs;
